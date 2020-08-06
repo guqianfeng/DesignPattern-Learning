@@ -28,27 +28,28 @@ var RectPeg = /** @class */ (function () {
     };
     return RectPeg;
 }());
-// class RectPegAdapter extends RoundPeg {
-//   constructor(public rectPeg: RectPeg){
-//     super(rectPeg.getWidth())
-//   }
-//   getRadius () {
-//     return this.rectPeg.getWidth() * Math.sqrt(2) / 2;
-//   }
-// }
+var RectPegAdapter = /** @class */ (function () {
+    function RectPegAdapter(rectPeg) {
+        this.rectPeg = rectPeg;
+    }
+    RectPegAdapter.prototype.getRadius = function () {
+        return this.rectPeg.getWidth() * Math.sqrt(2) / 2;
+    };
+    return RectPegAdapter;
+}());
 var hole = new Hole(3);
 var roundPeg1 = new RoundPeg(3);
 var roundPeg2 = new RoundPeg(4);
 // console.log(hole.fit(roundPeg1));
 // console.log(hole.fit(roundPeg2));
-var rectPeg1 = new RectPeg(1);
+var rectPeg1 = new RectPeg(4);
 var rectPeg2 = new RectPeg(10);
 // 报错
 // console.log(hole.fit(rectPeg1))
 // console.log(hole.fit(rectPeg2))
-// let rectPegAdapter1 = new RectPegAdapter(rectPeg1);
-// let rectPegAdapter2 = new RectPegAdapter(rectPeg2);
-// console.log(rectPegAdapter1.radius, rectPegAdapter1.getRadius())
-// console.log(rectPegAdapter2.radius, rectPegAdapter1.getRadius())
-// console.log(hole.fit(rectPegAdapter1))
-// console.log(hole.fit(rectPegAdapter2))
+var rectPegAdapter1 = new RectPegAdapter(rectPeg1);
+var rectPegAdapter2 = new RectPegAdapter(rectPeg2);
+console.log(rectPegAdapter1.rectPeg, rectPegAdapter1.getRadius());
+console.log(rectPegAdapter2.rectPeg, rectPegAdapter2.getRadius());
+console.log(hole.fit(rectPegAdapter1));
+console.log(hole.fit(rectPegAdapter2));
