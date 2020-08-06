@@ -7,7 +7,7 @@ class Hole {
     return this.radius;
   }
 
-  fit (roundPeg: RoundPeg | RectPegAdapter) {
+  fit (roundPeg: RoundPeg) {
     return this.getRadius() >= roundPeg.getRadius();
   }
 }
@@ -31,10 +31,13 @@ class RectPeg {
   }
 }
 
-class RectPegAdapter {
-  constructor(public rectPeg: RectPeg){}
+class RectPegAdapter extends RoundPeg{
+  constructor(public rectPeg: RectPeg, public radius: number = 0){
+    super(radius)
+  }
   getRadius () {
-    return this.rectPeg.getWidth() * Math.sqrt(2) / 2;
+    this.radius = this.rectPeg.getWidth() * Math.sqrt(2) / 2;
+    return this.radius;
   }
 }
 
@@ -52,8 +55,8 @@ let rectPeg2 = new RectPeg(10);
 
 let rectPegAdapter1 = new RectPegAdapter(rectPeg1);
 let rectPegAdapter2 = new RectPegAdapter(rectPeg2);
-console.log(rectPegAdapter1.rectPeg, rectPegAdapter1.getRadius())
-console.log(rectPegAdapter2.rectPeg, rectPegAdapter2.getRadius())
+console.log(rectPegAdapter1, rectPegAdapter1.getRadius())
+console.log(rectPegAdapter2, rectPegAdapter2.getRadius())
 console.log(hole.fit(rectPegAdapter1))
 console.log(hole.fit(rectPegAdapter2))
 
