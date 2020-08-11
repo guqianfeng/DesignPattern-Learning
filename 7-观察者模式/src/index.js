@@ -86,9 +86,11 @@ class EventBus {
       this.handlers[eventName] = [];
     }
     this.handlers[eventName].push(fn)
+    // console.log(this.handlers[eventName], fn)
   }
 
   off (eventName, fn) {
+    // console.log(eventName, fn);
     let fns = this.handlers[eventName];
     let index = fns.findIndex(item => item == fn);
     if (index != -1) {
@@ -128,6 +130,8 @@ zhibopingtai.on("mengrourou", fensi3)
 
 zhibopingtai.emit("mengrourou");
 
+console.log("--------------------------主播分割线--------------------------")
+
 // 主播2
 zhibopingtai.on("meirourou", function () {
   console.log("美肉肉粉丝1号来啦")
@@ -135,12 +139,10 @@ zhibopingtai.on("meirourou", function () {
 zhibopingtai.on("meirourou", function () {
   console.log("美肉肉粉丝2号来啦")
 })
-zhibopingtai.on("meirourou", function () {
-  console.log("美肉肉粉丝3号来啦")
-})
 zhibopingtai.once("meirourou", function () {
-  console.log("假粉就看你一次呀")
+  console.log("美肉肉粉丝3号假粉来啦")
 })
 zhibopingtai.emit("meirourou");
 
+console.log("--------------------------美肉肉再次直播的时候--------------------------")
 zhibopingtai.emit("meirourou");
