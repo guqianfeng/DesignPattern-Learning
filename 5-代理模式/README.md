@@ -98,8 +98,10 @@ let proxyGirl = new Proxy(girl, {
   set (target, key, value) {
     if (key === "age") {
       target[key] = value;
+      return true;
     } else {
-      console.log("你没有权限修改")
+      // console.log("你没有权限修改")
+      throw new Error("你没有权限修改");
     }
   }
 })
