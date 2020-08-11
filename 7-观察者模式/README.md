@@ -80,3 +80,72 @@ productManager.setPrd(prd);
 ```
 
 * 直播平台之主播与粉丝的故事
+```js
+class EventBus {
+  constructor () {
+    this.handlers = {}
+  }
+  on (eventName, fn) {
+    if (!this.handlers[eventName]) {
+      this.handlers[eventName] = [];
+    }
+    this.handlers[eventName].push(fn)
+  }
+
+  off (eventName, fn) {
+    let fns = this.handlers[eventName];
+    let index = fns.findIndex(item => item == fn);
+    if (index != -1) {
+      fns.splice(index, 1);
+    }
+  }
+
+  emit (eventName, ...args) {
+    this.handlers[eventName] && this.handlers[eventName].forEach(cb => {
+      cb(...args);
+    })
+  }
+
+  once (eventName, fn) {
+    const wrap = (...args) => {
+      fn.apply(...args);
+      this.off(eventName, wrap);
+    }
+    this.on(eventName, wrap);
+  }
+}
+
+const zhibopingtai = new EventBus()
+
+// 主播1
+zhibopingtai.on("mengrourou", function () {
+  console.log("萌肉肉粉丝1号来啦")
+})
+zhibopingtai.on("mengrourou", function () {
+  console.log("萌肉肉粉丝2号来啦")
+})
+function fensi3 () {
+  console.log("萌肉肉粉丝3号来啦")
+}
+zhibopingtai.on("mengrourou", fensi3)
+// zhibopingtai.off("mengrourou", fensi3)
+
+zhibopingtai.emit("mengrourou");
+
+// 主播2
+zhibopingtai.on("meirourou", function () {
+  console.log("美肉肉粉丝1号来啦")
+})
+zhibopingtai.on("meirourou", function () {
+  console.log("美肉肉粉丝2号来啦")
+})
+zhibopingtai.on("meirourou", function () {
+  console.log("美肉肉粉丝3号来啦")
+})
+zhibopingtai.once("meirourou", function () {
+  console.log("假粉就看你一次呀")
+})
+zhibopingtai.emit("meirourou");
+
+zhibopingtai.emit("meirourou");
+```
