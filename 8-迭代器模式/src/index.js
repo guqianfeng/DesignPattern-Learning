@@ -16,9 +16,8 @@ function iteratorGenerator (list) {
 let list = ["1号顾客", "2号顾客", "3号顾客", "4号顾客", "5号顾客"]
 
 let iterator = iteratorGenerator(list);
-console.log(iterator.next());
-console.log(iterator.next());
-console.log(iterator.next());
-console.log(iterator.next());
-console.log(iterator.next());
-console.log(iterator.next());
+let now = iterator.next();
+while(!now.done) {
+  console.log(now.value);
+  now = iterator.next();
+}
