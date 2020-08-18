@@ -16,6 +16,7 @@ class Folder {
       let file = this.parent.files[i];
       if (file === this) {
         this.parent.files.splice(i, 1);
+        break;
       }
     }
   }
@@ -46,6 +47,7 @@ class File {
       let file = this.parent.files[i];
       if (file === this) {
         this.parent.files.splice(i, 1);
+        break;
       }
     }
   }
@@ -59,15 +61,16 @@ let file1 = new File('文件1')
 let file2 = new File('文件2')
 let file3 = new File('文件3')
 let file4 = new File('文件4')
-folder.add(file4)
 folder.add(folder1)
 folder.add(folder2)
 folder.add(folder3)
 folder1.add(file1)
 folder2.add(file2)
 folder3.add(file3)
+folder.add(file4)
 folder.scan();
 
 console.log('-------------------------')
 folder1.remove();
+file3.remove();
 folder.scan();
