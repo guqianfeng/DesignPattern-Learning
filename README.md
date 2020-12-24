@@ -2,7 +2,7 @@
 
 ## 参考资料
 
-* [常用设计模式有哪些](https://refactoringguru.cn/design-patterns)
+* [常用设计模式有哪些](https://refactoringguru.cn/design-patterns/typescript)
 
 ## 白话解释各案例
 
