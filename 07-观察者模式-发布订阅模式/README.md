@@ -1,4 +1,10 @@
-// 观察者模式
+# 观察者模式-发布订阅模式
+
+## 开始玩耍
+
+* 产品经理与前后端测试的故事
+
+```js
 class Publisher {
   constructor () {
     this.observers = []
@@ -72,11 +78,11 @@ let prd = {
 // productManager.remove(test);
 // 发需求到群里
 productManager.setPrd(prd);
+```
 
-console.log("--------------------------分割线--------------------------")
+* 直播平台之主播与粉丝的故事
 
-// 发布订阅模式
-
+```js
 class EventBus {
   constructor () {
     this.handlers = {}
@@ -146,3 +152,4 @@ zhibopingtai.emit("meirourou");
 
 console.log("--------------------------美肉肉再次直播的时候--------------------------")
 zhibopingtai.emit("meirourou");
+```
